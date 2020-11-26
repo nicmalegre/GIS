@@ -1,0 +1,1 @@
+var URL_OGC = 'http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/home/nicmalegre/tpi.qgs'
