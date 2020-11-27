@@ -10,10 +10,15 @@
     <title>G1Maps</title>
     <script src="v6.4.3/build/ol.js" type="text/javascript"></script>
     <script src="url.js" type="text/javascript"></script>
+
     <!--agregamos la libreria JQuery -->
     <script src="jquery.min.js" type="text/javascript"></script>
+
     <!-- Importamos el css -->
     <link rel="stylesheet" href="index.css" type="text/css">
+    
+    <!-- Importamos los iconos de fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -29,21 +34,28 @@
             <i class="fa fa-bars"></i>
         </a> -->
     </div>
-    <h1>Bienvenido a G1Maps</h1>
 
     <!-- DIV que contiene el mapa -->
     <div id="map"></div>
 
     <div id="panel">
-        <h3>Capas</h3>
-        <!-- checkboxes para activar/desactivar las capas -->
-        <input type="checkbox" id="check_layer_1" onclick="mostrarCapa(event)"><label for="check_layer_1"> Actividades Agropecuarias</label><br />
-        <input type="checkbox" id="check_layer_2" onclick="mostrarCapa(event)"><label for="check_layer_2"> Actividades Economicas</label><br />
-        <input type="checkbox" id="check_layer_3" onclick="mostrarCapa(event)"><label for="check_layer_3"> Complejo de Energia</label><br />
+        <div id="capas">
+            <h3>Capas</h3>
+            <!-- checkboxes para activar/desactivar las capas -->
+            <input type="checkbox" id="check_layer_1" onclick="mostrarCapa(event)"><label for="check_layer_1"> Actividades Agropecuarias</label><br />
+            <input type="checkbox" id="check_layer_2" onclick="mostrarCapa(event)"><label for="check_layer_2"> Actividades Economicas</label><br />
+            <input type="checkbox" id="check_layer_3" onclick="mostrarCapa(event)"><label for="check_layer_3"> Complejo de Energia</label><br />
+        </div>
     </div>
+    <input type="button" id="btn-controlLateralMenu" onclick="controlLateralMenu()" value="Cerrar">
+    
 
     <!-- SCRIPT que crea el mapa y sus capas -->
     <script type="text/javascript">
+
+        var MenuLateralIsOpen = true;
+
+
         //creo un source de tipo Vector
         var vectorSource = new ol.source.Vector({
             //formato de los datos a consumir
@@ -149,7 +161,7 @@
 
             })
         });
-
+    
 
 
         //function que va a realizar la peticion de la consulta
@@ -250,8 +262,20 @@
             if (event.target.id === 'check_layer_3'){
                 complejo_de_energia_ene.setVisible(checkbox.checked)
             }
+        }
 
-            
+        const controlLateralMenu = () => {
+            const panel = document.getElementById('panel')
+            const buttonMenuLateral = document.getElementById('btn-controlLateralMenu')
+
+            if (MenuLateralIsOpen){
+                panel.style.display = 'none'
+                buttonMenuLateral.value = 'Abrir'
+            }else{
+                panel.style.display = 'block'
+                buttonMenuLateral.value = 'Cerrar'
+            }
+            MenuLateralIsOpen = !MenuLateralIsOpen
         }
     </script>
 </body>

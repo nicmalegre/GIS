@@ -60,14 +60,27 @@ body {
 
 /* ESTILOS PARA EL MAPA Y EL PANEL */
 #map {
-    height: 400px;
-    width: 75%;
-    float: left;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 #panel {
     height: 400px;
-    width: 25%;
+    width: 15%;
+    position: relative;
+    background-color: #EEEE ;
     float: right;
-    background-color: #EEE;
+    padding: 10px 0 0 0;
+}
+
+#capas{
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#btn-controlLateralMenu{
+  position: relative;
+  float: right;
 }
