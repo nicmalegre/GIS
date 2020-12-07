@@ -28,12 +28,16 @@ body {
 
 #panel {
     margin-top: 60px;
-    height: 400px;
-    width: 15%;
+    width: 20%;
     position: relative;
     background-color: #EEEE ;
     float: right;
     padding: 10px 0 0 0;
+    border-left: 0.5px solid #c2c2c2;
+}
+
+#panel input{
+  margin: 5px;
 }
 
 #capas{
@@ -42,7 +46,20 @@ body {
   margin-bottom: 10px;
 }
 
-#btn-controlLateralMenu{
+.btn-controlLateralMenu{
+  margin-top: 60px;
   position: relative;
   float: right;
+  text-decoration: none !important;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.btn-controlLateralMenu:hover{
+  color: rgba(0, 71, 177, 0.933);
+}
+
+.section-title{
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 5px;
 }

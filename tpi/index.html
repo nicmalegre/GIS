@@ -19,6 +19,7 @@
     
     <!-- Importamos los iconos de fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
 <body>
@@ -33,64 +34,127 @@
     <div id="map"></div>
 
     <div id="panel">
-        <div id="capas">
-            <h3>Capas</h3>
-            <!-- checkboxes para activar/desactivar las capas -->
-            <input type="checkbox" id="check_layer_1" onclick="mostrarCapa(event)"><label for="check_layer_1"> 1. Actividades Agropecuarias</label><br />
-            <input type="checkbox" id="check_layer_2" onclick="mostrarCapa(event)"><label for="check_layer_2"> 2. Actividades Economicas</label><br />
-            <input type="checkbox" id="check_layer_3" onclick="mostrarCapa(event)"><label for="check_layer_3"> 3. Complejo de Energia</label><br />
-            <input type="checkbox" id="check_layer_4" onclick="mostrarCapa(event)"><label for="check_layer_4"> 4. Curso de Agua Hid</label><br />
-            <input type="checkbox" id="check_layer_5" onclick="mostrarCapa(event)"><label for="check_layer_5"> 5. Curvas de Nivel</label><br />
-            <input type="checkbox" id="check_layer_6" onclick="mostrarCapa(event)"><label for="check_layer_6"> 6. Construcciones turisticas</label><br />
-            <input type="checkbox" id="check_layer_7" onclick="mostrarCapa(event)"><label for="check_layer_7"> 7. Edif. Depor y Esparcimiento</label><br />
-            <input type="checkbox" id="check_layer_8" onclick="mostrarCapa(event)"><label for="check_layer_8"> 8. Edif. Educacion</label><br />
-            <input type="checkbox" id="check_layer_9" onclick="mostrarCapa(event)"><label for="check_layer_9"> 9. Edif. Religosos</label><br />
-            <input type="checkbox" id="check_layer_10" onclick="mostrarCapa(event)"><label for="check_layer_10"> 10. Edif. Salud IPS</label><br />
-            <input type="checkbox" id="check_layer_11" onclick="mostrarCapa(event)"><label for="check_layer_11"> 11. Edif. Seg IPS</label><br />
-            <input type="checkbox" id="check_layer_12" onclick="mostrarCapa(event)"><label for="check_layer_12"> 12. Edif. Publico IPS</label><br />
-            <input type="checkbox" id="check_layer_13" onclick="mostrarCapa(event)"><label for="check_layer_13"> 13. Edif. Ferroviarios</label><br />
-            <input type="checkbox" id="check_layer_14" onclick="mostrarCapa(event)"><label for="check_layer_14"> 14. Ejido</label><br />
-            <input type="checkbox" id="check_layer_15" onclick="mostrarCapa(event)"><label for="check_layer_15"> 15. Espejos Agua Hid</label><br />
-            <input type="checkbox" id="check_layer_16" onclick="mostrarCapa(event)"><label for="check_layer_16"> 16. Est. Portuarias</label><br />
-            <input type="checkbox" id="check_layer_17" onclick="mostrarCapa(event)"><label for="check_layer_17"> 17. Inf. Aeroportuaria P.</label><br />
-            <input type="checkbox" id="check_layer_18" onclick="mostrarCapa(event)"><label for="check_layer_18"> 18. Inf. Hid</label><br />
-            <input type="checkbox" id="check_layer_19" onclick="mostrarCapa(event)"><label for="check_layer_19"> 19. Isla</label><br />
-            <input type="checkbox" id="check_layer_20" onclick="mostrarCapa(event)"><label for="check_layer_20"> 20. Lim. Politico Adm</label><br />
-            <input type="checkbox" id="check_layer_21" onclick="mostrarCapa(event)"><label for="check_layer_21"> 21. Localidades</label><br />
-            <input type="checkbox" id="check_layer_22" onclick="mostrarCapa(event)"><label for="check_layer_22"> 22. Lineas de Conduc. Ene</label><br />
-            <input type="checkbox" id="check_layer_23" onclick="mostrarCapa(event)"><label for="check_layer_23"> 23. Marcas y Sen</label><br />
-            <input type="checkbox" id="check_layer_24" onclick="mostrarCapa(event)"><label for="check_layer_24"> 24. Muro Embalse</label><br />
-            <input type="checkbox" id="check_layer_25" onclick="mostrarCapa(event)"><label for="check_layer_25"> 25. Obra Comunicacion</label><br />
-            <input type="checkbox" id="check_layer_26" onclick="mostrarCapa(event)"><label for="check_layer_26"> 26. Obra Portuaria</label><br />
-            <input type="checkbox" id="check_layer_27" onclick="mostrarCapa(event)"><label for="check_layer_27"> 27. Otras Edif.</label><br />
-            <input type="checkbox" id="check_layer_28" onclick="mostrarCapa(event)"><label for="check_layer_28"> 28. Pais Lim</label><br />
-            <input type="checkbox" id="check_layer_29" onclick="mostrarCapa(event)"><label for="check_layer_29"> 29. Provincias</label><br />
-            <input type="checkbox" id="check_layer_30" onclick="mostrarCapa(event)"><label for="check_layer_30"> 30. Puente Red Vial</label><br />
-            <input type="checkbox" id="check_layer_31" onclick="mostrarCapa(event)"><label for="check_layer_31"> 31. Puntos de Alt Top</label><br />
-            <input type="checkbox" id="check_layer_32" onclick="mostrarCapa(event)"><label for="check_layer_32"> 32. Puntos del Terreno</label><br />
-            <input type="checkbox" id="check_layer_33" onclick="mostrarCapa(event)"><label for="check_layer_33"> 33. Red Ferroviaria</label><br />
-            <input type="checkbox" id="check_layer_34" onclick="mostrarCapa(event)"><label for="check_layer_34"> 34. Red Vial</label><br />
-            <input type="checkbox" id="check_layer_35" onclick="mostrarCapa(event)"><label for="check_layer_35"> 35. Salvado de Obs</label><br />
-            <input type="checkbox" id="check_layer_36" onclick="mostrarCapa(event)"><label for="check_layer_36"> 36. Senalizaciones</label><br />
-            <input type="checkbox" id="check_layer_37" onclick="mostrarCapa(event)"><label for="check_layer_37"> 37. Suelo Congelado</label><br />
-            <input type="checkbox" id="check_layer_38" onclick="mostrarCapa(event)"><label for="check_layer_38"> 38. Suelo Consolidado</label><br />
-            <input type="checkbox" id="check_layer_39" onclick="mostrarCapa(event)"><label for="check_layer_39"> 39. Suelo Costero</label><br />
-            <input type="checkbox" id="check_layer_40" onclick="mostrarCapa(event)"><label for="check_layer_40"> 40. Suelo Hidromor</label><br />
-            <input type="checkbox" id="check_layer_41" onclick="mostrarCapa(event)"><label for="check_layer_41"> 41. Suelo No Consolidado</label><br />
-            <input type="checkbox" id="check_layer_42" onclick="mostrarCapa(event)"><label for="check_layer_42"> 42. Vegetacion Arborea</label><br />
-            <input type="checkbox" id="check_layer_43" onclick="mostrarCapa(event)"><label for="check_layer_43"> 43. Vegetacion Arbustiva</label><br />
-            <input type="checkbox" id="check_layer_44" onclick="mostrarCapa(event)"><label for="check_layer_44"> 44. Vegetacion Cultivos</label><br />
-            <input type="checkbox" id="check_layer_45" onclick="mostrarCapa(event)"><label for="check_layer_45"> 45. Vegetacion Hidrofila</label><br />
-            <input type="checkbox" id="check_layer_46" onclick="mostrarCapa(event)"><label for="check_layer_46"> 46. Vegetacion Suelo Desnudo</label><br />
-            <input type="checkbox" id="check_layer_47" onclick="mostrarCapa(event)"><label for="check_layer_47"> 47. Vias Secundarias</label><br />
+        
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="margin: 0; padding: 0; align-items: center;">
+                    <p style="font-size: 20px; margin: 0;"><b>Capas</b></p>
+                    </button>
+                </div>
+            
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div id="capas">
+                            <!-- checkboxes para activar/desactivar las capas -->
+                            <input type="checkbox" id="check_layer_1" onclick="mostrarCapa(event)"><label for="check_layer_1"> 1. Actividades Agropecuarias</label><br />
+                            <input type="checkbox" id="check_layer_2" onclick="mostrarCapa(event)"><label for="check_layer_2"> 2. Actividades Economicas</label><br />
+                            <input type="checkbox" id="check_layer_3" onclick="mostrarCapa(event)"><label for="check_layer_3"> 3. Complejo de Energia</label><br />
+                            <input type="checkbox" id="check_layer_4" onclick="mostrarCapa(event)"><label for="check_layer_4"> 4. Curso de Agua Hid</label><br />
+                            <input type="checkbox" id="check_layer_5" onclick="mostrarCapa(event)"><label for="check_layer_5"> 5. Curvas de Nivel</label><br />
+                            <input type="checkbox" id="check_layer_6" onclick="mostrarCapa(event)"><label for="check_layer_6"> 6. Construcciones turisticas</label><br />
+                            <input type="checkbox" id="check_layer_7" onclick="mostrarCapa(event)"><label for="check_layer_7"> 7. Edif. Depor y Esparcimiento</label><br />
+                            <input type="checkbox" id="check_layer_8" onclick="mostrarCapa(event)"><label for="check_layer_8"> 8. Edif. Educacion</label><br />
+                            <input type="checkbox" id="check_layer_9" onclick="mostrarCapa(event)"><label for="check_layer_9"> 9. Edif. Religosos</label><br />
+                            <input type="checkbox" id="check_layer_10" onclick="mostrarCapa(event)"><label for="check_layer_10"> 10. Edif. Salud IPS</label><br />
+                            <input type="checkbox" id="check_layer_11" onclick="mostrarCapa(event)"><label for="check_layer_11"> 11. Edif. Seg IPS</label><br />
+                            <input type="checkbox" id="check_layer_12" onclick="mostrarCapa(event)"><label for="check_layer_12"> 12. Edif. Publico IPS</label><br />
+                            <input type="checkbox" id="check_layer_13" onclick="mostrarCapa(event)"><label for="check_layer_13"> 13. Edif. Ferroviarios</label><br />
+                            <input type="checkbox" id="check_layer_14" onclick="mostrarCapa(event)"><label for="check_layer_14"> 14. Ejido</label><br />
+                            <input type="checkbox" id="check_layer_15" onclick="mostrarCapa(event)"><label for="check_layer_15"> 15. Espejos Agua Hid</label><br />
+                            <input type="checkbox" id="check_layer_16" onclick="mostrarCapa(event)"><label for="check_layer_16"> 16. Est. Portuarias</label><br />
+                            <input type="checkbox" id="check_layer_17" onclick="mostrarCapa(event)"><label for="check_layer_17"> 17. Inf. Aeroportuaria P.</label><br />
+                            <input type="checkbox" id="check_layer_18" onclick="mostrarCapa(event)"><label for="check_layer_18"> 18. Inf. Hid</label><br />
+                            <input type="checkbox" id="check_layer_19" onclick="mostrarCapa(event)"><label for="check_layer_19"> 19. Isla</label><br />
+                            <input type="checkbox" id="check_layer_20" onclick="mostrarCapa(event)"><label for="check_layer_20"> 20. Lim. Politico Adm</label><br />
+                            <input type="checkbox" id="check_layer_21" onclick="mostrarCapa(event)"><label for="check_layer_21"> 21. Localidades</label><br />
+                            <input type="checkbox" id="check_layer_22" onclick="mostrarCapa(event)"><label for="check_layer_22"> 22. Lineas de Conduc. Ene</label><br />
+                            <input type="checkbox" id="check_layer_23" onclick="mostrarCapa(event)"><label for="check_layer_23"> 23. Marcas y Sen</label><br />
+                            <input type="checkbox" id="check_layer_24" onclick="mostrarCapa(event)"><label for="check_layer_24"> 24. Muro Embalse</label><br />
+                            <input type="checkbox" id="check_layer_25" onclick="mostrarCapa(event)"><label for="check_layer_25"> 25. Obra Comunicacion</label><br />
+                            <input type="checkbox" id="check_layer_26" onclick="mostrarCapa(event)"><label for="check_layer_26"> 26. Obra Portuaria</label><br />
+                            <input type="checkbox" id="check_layer_27" onclick="mostrarCapa(event)"><label for="check_layer_27"> 27. Otras Edif.</label><br />
+                            <input type="checkbox" id="check_layer_28" onclick="mostrarCapa(event)"><label for="check_layer_28"> 28. Pais Lim</label><br />
+                            <input type="checkbox" id="check_layer_29" onclick="mostrarCapa(event)"><label for="check_layer_29"> 29. Provincias</label><br />
+                            <input type="checkbox" id="check_layer_30" onclick="mostrarCapa(event)"><label for="check_layer_30"> 30. Puente Red Vial</label><br />
+                            <input type="checkbox" id="check_layer_31" onclick="mostrarCapa(event)"><label for="check_layer_31"> 31. Puntos de Alt Top</label><br />
+                            <input type="checkbox" id="check_layer_32" onclick="mostrarCapa(event)"><label for="check_layer_32"> 32. Puntos del Terreno</label><br />
+                            <input type="checkbox" id="check_layer_33" onclick="mostrarCapa(event)"><label for="check_layer_33"> 33. Red Ferroviaria</label><br />
+                            <input type="checkbox" id="check_layer_34" onclick="mostrarCapa(event)"><label for="check_layer_34"> 34. Red Vial</label><br />
+                            <input type="checkbox" id="check_layer_35" onclick="mostrarCapa(event)"><label for="check_layer_35"> 35. Salvado de Obs</label><br />
+                            <input type="checkbox" id="check_layer_36" onclick="mostrarCapa(event)"><label for="check_layer_36"> 36. Senalizaciones</label><br />
+                            <input type="checkbox" id="check_layer_37" onclick="mostrarCapa(event)"><label for="check_layer_37"> 37. Suelo Congelado</label><br />
+                            <input type="checkbox" id="check_layer_38" onclick="mostrarCapa(event)"><label for="check_layer_38"> 38. Suelo Consolidado</label><br />
+                            <input type="checkbox" id="check_layer_39" onclick="mostrarCapa(event)"><label for="check_layer_39"> 39. Suelo Costero</label><br />
+                            <input type="checkbox" id="check_layer_40" onclick="mostrarCapa(event)"><label for="check_layer_40"> 40. Suelo Hidromor</label><br />
+                            <input type="checkbox" id="check_layer_41" onclick="mostrarCapa(event)"><label for="check_layer_41"> 41. Suelo No Consolidado</label><br />
+                            <input type="checkbox" id="check_layer_42" onclick="mostrarCapa(event)"><label for="check_layer_42"> 42. Vegetacion Arborea</label><br />
+                            <input type="checkbox" id="check_layer_43" onclick="mostrarCapa(event)"><label for="check_layer_43"> 43. Vegetacion Arbustiva</label><br />
+                            <input type="checkbox" id="check_layer_44" onclick="mostrarCapa(event)"><label for="check_layer_44"> 44. Vegetacion Cultivos</label><br />
+                            <input type="checkbox" id="check_layer_45" onclick="mostrarCapa(event)"><label for="check_layer_45"> 45. Vegetacion Hidrofila</label><br />
+                            <input type="checkbox" id="check_layer_46" onclick="mostrarCapa(event)"><label for="check_layer_46"> 46. Vegetacion Suelo Desnudo</label><br />
+                            <input type="checkbox" id="check_layer_47" onclick="mostrarCapa(event)"><label for="check_layer_47"> 47. Vias Secundarias</label><br />
+                        </div>  
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collaspe 2 -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="margin: 0; padding: 0; align-items: center;">
+                    <p style="font-size: 20px; margin: 0;"><b>Consultas</b></p>
+                    </button>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+            </div>
+
+            <!-- Collaspe 3 -->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="margin: 0; padding: 0; align-items: center;">
+                    <p style="font-size: 20px; margin: 0;"><b>Otros</b></p>
+                    </button>
+                </div>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+            </div>
         </div>
+        
+        
     </div>
-    <input type="button" id="btn-controlLateralMenu" onclick="controlLateralMenu()" value="Cerrar">
+    <!-- <input type="button" id="btn-controlLateralMenu" onclick="controlLateralMenu()" value="Cerrar"> -->
+    
+    <!-- ManuLateral Open -->
+    <div class="btn-controlLateralMenu" id="btn-controlLateralMenuOpen" onclick="controlLateralMenu()">
+        <svg width="34px" height="34px" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+        </svg>
+    </div>
+
+    <!-- ManuLateral Close -->
+    <div class="btn-controlLateralMenu" id="btn-controlLateralMenuClose" onclick="controlLateralMenu()" style="display: none;">
+        <svg width="34px" height="34px" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+          </svg>
+    </div>
 
     <!-- SCRIPT que crea el mapa y sus capas -->
     <script type="text/javascript">
 
         var MenuLateralIsOpen = true;
+        var sectionCapasIsOpen = false;
 
 
         //creo un source de tipo Vector
@@ -974,13 +1038,35 @@
 
             if (MenuLateralIsOpen){
                 panel.style.display = 'none'
-                buttonMenuLateral.value = 'Abrir'
+                document.getElementById('btn-controlLateralMenuOpen').style.display = 'none'
+                document.getElementById('btn-controlLateralMenuClose').style.display = 'block'
+                
             }else{
                 panel.style.display = 'block'
-                buttonMenuLateral.value = 'Cerrar'
+                document.getElementById('btn-controlLateralMenuOpen').style.display = 'block'
+                document.getElementById('btn-controlLateralMenuClose').style.display = 'none'
             }
             MenuLateralIsOpen = !MenuLateralIsOpen
         }
+
+        const controlSectionCapas = () =>{
+            const capas = document.getElementById('capas')
+            const titleCapas = document.getElementById('title-capas')
+
+            if(sectionCapasIsOpen){
+                /* capas.style.display='none' */
+                titleCapas.value = "Capas +"
+            }else{
+                /* capas.style.display='block' */
+                titleCapas.value = "Capas -"
+            }
+            sectionCapasIsOpen = !sectionCapasIsOpen
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
 </body>
 
