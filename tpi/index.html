@@ -17,8 +17,7 @@
     <!-- Importamos el css -->
     <link rel="stylesheet" href="index.css" type="text/css">
     
-    <!-- Importamos los iconos de fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Importamos Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
@@ -103,13 +102,28 @@
             <div class="card">
                 <div class="card-header" id="headingTwo">
                     <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="margin: 0; padding: 0; align-items: center;">
-                    <p style="font-size: 20px; margin: 0;"><b>Consultas</b></p>
+                    <p style="font-size: 20px; margin: 0;"><b>Controles</b></p>
                     </button>
                 </div>
 
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      <!-- evento onchange: ejecuta la funcion seleccionarControl -->
+                        <input type="radio" name="controles" id="controles_navegacion" value="navegacion" checked="checked"
+                        onchange="seleccionarControl(this)"> 
+                        <label for="controles_navegacion"> Navegacion</label><br />
+
+                        <input type="radio" name="controles" id="controles_consulta" value="consulta"
+                        onchange="seleccionarControl(this)"> 
+                        <label for="controles_consulta"> Consulta</label><br />
+
+                        <input type="radio" name="controles" id="medirDistancias" value="medirDistancias"
+                        onchange="seleccionarControl(this)"> 
+                        <label for="medirDistancias"> Medir Distancias</label><br />
+                        <select id="typeDistance" style="margin-left: 15px; display: none;">
+                            <option value="length">Length (LineString)</option>
+                            <option value="area">Area (Polygon)</option>
+                        </select>
                   </div>
                 </div>
             </div>
@@ -118,13 +132,32 @@
             <div class="card">
                 <div class="card-header" id="headingThree">
                     <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="margin: 0; padding: 0; align-items: center;">
-                    <p style="font-size: 20px; margin: 0;"><b>Otros</b></p>
+                    <p style="font-size: 20px; margin: 0;"><b>Escala</b></p>
                     </button>
                 </div>
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <select id="units" onchange="onChangeUnits()">
+                        <option value="degrees">degrees</option>
+                        <option value="imperial">imperial inch</option>
+                        <option value="us">us inch</option>
+                        <option value="nautical">nautical mile</option>
+                        <option value="metric" selected>metric</option>
+                    </select>
+                    <select id="type" onchange="onChangeType()">
+                        <option value="scaleline">ScaleLine</option>
+                        <option value="scalebar">ScaleBar</option>
+                    </select>
+                    <select id="steps" style="display:none" onchange="onChangeSteps()">
+                        <option value=2>2 steps</option>
+                        <option value=4 selected>4 steps</option>
+                        <option value=6>6 steps</option>
+                        <option value=8>8 steps</option>
+                    </select>
+                    <div id="showScaleTextDiv" style="display:none">
+                        <input type="checkbox" id="showScaleText" checked onchange="onChangeScaleText()">Show scale text
+                    </div>
                   </div>
                 </div>
             </div>
@@ -150,12 +183,13 @@
           </svg>
     </div>
 
+    
+
     <!-- SCRIPT que crea el mapa y sus capas -->
     <script type="text/javascript">
 
         var MenuLateralIsOpen = true;
         var sectionCapasIsOpen = false;
-
 
         //creo un source de tipo Vector
         var vectorSource = new ol.source.Vector({
@@ -728,82 +762,6 @@
                 }
             })
         });
-           
-        
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    title: "Base Map",
-                    source: new ol.source.TileWMS({
-                        url: 'http://wms.ign.gob.ar/geoserver/wms',
-                        params: {
-                            LAYERS: 'capabaseargenmap',
-                            VERSION: '1.1.1'
-                        }
-                    })
-                }),
-                actividades_agropecuarias,
-                actividades_economicas,
-                complejo_de_energia_ene,
-                curso_de_agua_hid,
-                curvas_de_nivel,
-                edif_construcciones_turisticas,
-                edif_depor_y_esparcimiento,
-                edif_educacion,
-                edif_religiosos,
-                edificio_de_salud_ips,
-                edificio_de_seguridad_ips,
-                edificio_publico_ips,
-                edificios_ferroviarios,
-                ejido,
-                espejos_de_agua_hid,
-                estructura_portuarias,
-                infraestructura_aeroportuaria_punto,
-                infraestructura_hidro,
-                isla,
-                limite_politico_administrativo_lim,
-                localidades,
-                lineas_de_conduccion_ene,
-                marcas_y_señales,
-                muro_embalse,
-                obra_de_comunicacion,
-                obra_portuaria,
-                otras_edificaciones,
-                pais_lim,
-                provincias,
-                puente_red_vial_puntos,
-                puntos_de_alturas_topograficas,
-                puntos_del_terreno,
-                red_ferroviaria,
-                red_vial,
-                salvado_de_obstaculo,
-                señalizaciones,
-                sue_congelado,
-                sue_consolidado,
-                sue_costero,
-                sue_hidromorfologico,
-                sue_no_consolidado,
-                veg_arborea,
-                veg_arbustiva,
-                veg_cultivos,
-                veg_hidrofila,
-                veg_suelo_desnudo,
-                vias_secundarias,
-
-                //agregi ka caoa vectorial
-                vectorLayer
-
-            ],
-            view: new ol.View({
-                projection: 'EPSG:4326',
-                center: [-59, -27.5],
-                zoom: 4
-
-            })
-        });
-    
-
 
         //function que va a realizar la peticion de la consulta
         var consultar = function (coordinate) {
@@ -865,6 +823,7 @@
 
         //function para "cambiar" de interaction en function del value de los radios
         var seleccionarControl = function (el) {
+            document.getElementById('typeDistance').style.display = 'none'
             if (el.value == "consulta") {
                 //agrego la interaccion del dragbox
                 //la cual tiene precedencia sobre las otras
@@ -873,21 +832,30 @@
                 //subscribo una funcion al evento click del mapa
                 map.on('click', clickEnMapa);
 
-            } else if (el.value == "navegacion") {
+                //muestro por consola el valor
+                console.log(el.value);
+            } 
+            if (el.value == "navegacion") {
                 //la remuevo...
                 map.removeInteraction(selectInteraction);
                 //remueveo la subscripcion de la funcion al evento click del mapa
                 map.un('click', clickEnMapa);
+
+                //muestro por consola el valor
+                console.log(el.value);
             }
-            //muestro por consola el valor
-            console.log(el.value);
+
+            if (el.value == 'medirDistancias'){
+                document.getElementById('typeDistance').style.display = 'block'
+
+
+            }
+            
         };
 
         //visibilidad de las capas
         const mostrarCapa = (event) =>{
             var checkbox = document.getElementById(event.target.id);
-            console.log(event.target.id)
-            console.log(checkbox.checked)
 
             if (event.target.id === 'check_layer_1'){
                 actividades_agropecuarias.setVisible(checkbox.checked)
@@ -1048,20 +1016,6 @@
             }
             MenuLateralIsOpen = !MenuLateralIsOpen
         }
-
-        const controlSectionCapas = () =>{
-            const capas = document.getElementById('capas')
-            const titleCapas = document.getElementById('title-capas')
-
-            if(sectionCapasIsOpen){
-                /* capas.style.display='none' */
-                titleCapas.value = "Capas +"
-            }else{
-                /* capas.style.display='block' */
-                titleCapas.value = "Capas -"
-            }
-            sectionCapasIsOpen = !sectionCapasIsOpen
-        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -1069,5 +1023,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
 </body>
+
+<script src="./index.js"></script>
 
 </html>
